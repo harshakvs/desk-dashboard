@@ -838,9 +838,9 @@
   // ---------------------------------------------------------------- schedule
   function every(fn, ms) { fn(); return setInterval(fn, ms); }
   applyTheme();
-  every(loadLists, 30e3);
+  every(loadLists, 10e3);
   every(loadBirthdays, 60 * 60e3);
-  every(loadHealth, 60e3);
+  every(loadHealth, 15e3);
   tick();
   setInterval(tick, 1000);
   setInterval(applyTheme, 60e3);
