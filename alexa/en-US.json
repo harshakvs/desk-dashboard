@@ -28,7 +28,6 @@
             }
           ],
           "samples": [
-            "{item}",
             "add {item}",
             "add {item} to groceries",
             "add {item} to the grocery list",
@@ -73,7 +72,11 @@
             "what's on my grocery list",
             "what do I need to buy",
             "read my grocery list",
-            "what groceries do I need"
+            "what groceries do I need",
+            "grocery list",
+            "my grocery list",
+            "what is on the list",
+            "read the list"
           ]
         },
         {
@@ -84,7 +87,12 @@
             "log water",
             "log a glass of water",
             "add a glass of water",
-            "I had water"
+            "I had water",
+            "water",
+            "I had a glass of water",
+            "drank water",
+            "log my water",
+            "one glass of water"
           ]
         },
         {
@@ -109,7 +117,18 @@
             "how is my fantasy team doing",
             "fantasy premier league",
             "when is the FPL deadline",
-            "FPL update"
+            "FPL update",
+            "for my FPL score",
+            "my FPL score",
+            "FPL score",
+            "for FPL",
+            "how is my FPL team",
+            "how did my FPL team do",
+            "my fantasy score",
+            "fantasy football",
+            "when is the deadline",
+            "FPL deadline",
+            "who should I captain"
           ]
         },
         {
@@ -119,7 +138,14 @@
             "when is the next PSG match",
             "PSG score",
             "how did PSG do",
-            "PSG update"
+            "PSG update",
+            "about PSG",
+            "for PSG",
+            "PSG",
+            "when is PSG playing",
+            "PSG next match",
+            "did PSG win",
+            "Paris Saint Germain"
           ]
         },
         {
@@ -128,7 +154,15 @@
             "what's the India score",
             "India cricket score",
             "cricket update",
-            "how is India doing"
+            "how is India doing",
+            "for the India score",
+            "the India score",
+            "India score",
+            "cricket score",
+            "cricket",
+            "India match",
+            "how is India doing in cricket",
+            "is India playing"
           ]
         },
         {
@@ -139,10 +173,6 @@
             "start my Claude timer",
             "wake up Claude"
           ]
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
         },
         {
           "name": "AMAZON.NoIntent",

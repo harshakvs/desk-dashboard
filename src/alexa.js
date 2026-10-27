@@ -78,6 +78,7 @@ async function verify(request, body, env) {
 // ---------------------------------------------------------------- responses
 
 function speak(text, end = true, reprompt) {
+  console.log('alexa reply:', text, end ? '(end)' : '(listening)');
   const response = { outputSpeech: { type: 'PlainText', text }, shouldEndSession: end };
   if (reprompt) response.reprompt = { outputSpeech: { type: 'PlainText', text: reprompt } };
   return new Response(JSON.stringify({ version: '1.0', response }), { headers: { 'content-type': 'application/json' } });
@@ -91,6 +92,8 @@ export async function handleAlexa(request, env, api) {
   if (problem) return new Response(JSON.stringify({ error: problem }), { status: 400 });
 
   const req = JSON.parse(body).request;
+  // What Alexa understood; visible with `wrangler tail` when debugging the voice model.
+  console.log('alexa request:', req.type, req.intent?.name || '', JSON.stringify(Object.fromEntries(Object.entries(req.intent?.slots || {}).map(([k, v]) => [k, v.value]))), req.reason || '', req.error?.message || '');
   if (req.type === 'LaunchRequest') return speak('Desk is ready. What should I add?', false, 'You can say an item like milk, or ask about FPL, PSG or cricket.');
   if (req.type === 'SessionEndedRequest') return new Response('{}', { headers: { 'content-type': 'application/json' } });
   if (req.type !== 'IntentRequest') return speak('Sorry, I did not get that.');
