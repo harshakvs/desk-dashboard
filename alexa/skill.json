@@ -6,12 +6,76 @@
           "name": "My Desk",
           "summary": "Voice control for my desk dashboard.",
           "description": "Adds groceries and to-dos, logs water and supplements, and reads FPL, PSG and India cricket updates from my desk dashboard.",
-          "examplePhrases": ["Alexa, ask my desk to add milk", "Alexa, tell my desk I drank water", "Alexa, ask my desk for my FPL score"],
-          "keywords": ["dashboard"]
+          "examplePhrases": [
+            "Alexa, ask my desk to add milk",
+            "Alexa, tell my desk I drank water",
+            "Alexa, ask my desk for my FPL score"
+          ],
+          "keywords": [
+            "dashboard"
+          ]
+        },
+        "en-IN": {
+          "name": "My Desk",
+          "summary": "Voice control for my desk dashboard.",
+          "description": "Adds groceries and to-dos, logs water and supplements, and reads FPL, PSG and India cricket updates from my desk dashboard.",
+          "examplePhrases": [
+            "Alexa, ask my desk to add milk",
+            "Alexa, tell my desk I drank water",
+            "Alexa, ask my desk for my FPL score"
+          ],
+          "keywords": [
+            "dashboard"
+          ]
+        },
+        "en-GB": {
+          "name": "My Desk",
+          "summary": "Voice control for my desk dashboard.",
+          "description": "Adds groceries and to-dos, logs water and supplements, and reads FPL, PSG and India cricket updates from my desk dashboard.",
+          "examplePhrases": [
+            "Alexa, ask my desk to add milk",
+            "Alexa, tell my desk I drank water",
+            "Alexa, ask my desk for my FPL score"
+          ],
+          "keywords": [
+            "dashboard"
+          ]
+        },
+        "en-CA": {
+          "name": "My Desk",
+          "summary": "Voice control for my desk dashboard.",
+          "description": "Adds groceries and to-dos, logs water and supplements, and reads FPL, PSG and India cricket updates from my desk dashboard.",
+          "examplePhrases": [
+            "Alexa, ask my desk to add milk",
+            "Alexa, tell my desk I drank water",
+            "Alexa, ask my desk for my FPL score"
+          ],
+          "keywords": [
+            "dashboard"
+          ]
+        },
+        "en-AU": {
+          "name": "My Desk",
+          "summary": "Voice control for my desk dashboard.",
+          "description": "Adds groceries and to-dos, logs water and supplements, and reads FPL, PSG and India cricket updates from my desk dashboard.",
+          "examplePhrases": [
+            "Alexa, ask my desk to add milk",
+            "Alexa, tell my desk I drank water",
+            "Alexa, ask my desk for my FPL score"
+          ],
+          "keywords": [
+            "dashboard"
+          ]
         }
       },
       "isAvailableWorldwide": false,
-      "distributionCountries": ["US"],
+      "distributionCountries": [
+        "US",
+        "IN",
+        "GB",
+        "CA",
+        "AU"
+      ],
       "testingInstructions": "Personal skill, development stage only.",
       "category": "ORGANIZERS_AND_ASSISTANTS"
     },
@@ -29,7 +93,28 @@
       "isChildDirected": false,
       "isExportCompliant": true,
       "containsAds": false,
-      "locales": { "en-US": { "privacyPolicyUrl": "", "termsOfUseUrl": "" } }
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-IN": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-GB": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-CA": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-AU": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        }
+      }
     }
   }
 }

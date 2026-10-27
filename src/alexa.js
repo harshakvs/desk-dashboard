@@ -152,6 +152,8 @@ export async function handleAlexa(request, env, api) {
         const ok = await api.claudeHi();
         return speak(ok ? 'Saying hi to Claude. Your usage window starts in about a minute.' : 'The Claude button is not set up yet.');
       }
+      case 'AMAZON.FallbackIntent':
+        return speak('Sorry, I didn\'t catch that. Try: add eggs, I drank water, or what is my FPL score.', false);
       case 'AMAZON.HelpIntent':
         return speak('Try: add milk to groceries, I drank water, what is my FPL score, or when do PSG play.', false);
       case 'AMAZON.StopIntent':

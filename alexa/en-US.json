@@ -24,20 +24,30 @@
           "slots": [
             {
               "name": "item",
-              "type": "AMAZON.SearchQuery"
+              "type": "GROCERY_ITEM"
             }
           ],
           "samples": [
-            "add {item} to my list",
-            "add {item} to the list",
-            "add {item} to my shopping list",
+            "add {item}",
             "add {item} to groceries",
             "add {item} to the grocery list",
             "add {item} to my grocery list",
+            "add {item} to my list",
+            "add {item} to the list",
+            "add {item} to my shopping list",
+            "add {item} to the shopping list",
             "put {item} on the grocery list",
+            "put {item} on my list",
             "we need {item}",
+            "we are out of {item}",
+            "I need {item}",
             "buy {item}",
-            "add {item}"
+            "get {item}",
+            "grocery {item}",
+            "groceries {item}",
+            "add some {item}",
+            "add a {item}",
+            "add {item} please"
           ]
         },
         {
@@ -128,6 +138,10 @@
             "start my Claude timer",
             "wake up Claude"
           ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
         }
       ],
       "types": [
@@ -150,6 +164,656 @@
                 "synonyms": [
                   "mag"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GROCERY_ITEM",
+          "values": [
+            {
+              "name": {
+                "value": "almond"
+              }
+            },
+            {
+              "name": {
+                "value": "almond milk"
+              }
+            },
+            {
+              "name": {
+                "value": "aluminum foil"
+              }
+            },
+            {
+              "name": {
+                "value": "apple"
+              }
+            },
+            {
+              "name": {
+                "value": "apples"
+              }
+            },
+            {
+              "name": {
+                "value": "atta"
+              }
+            },
+            {
+              "name": {
+                "value": "avocado"
+              }
+            },
+            {
+              "name": {
+                "value": "avocados"
+              }
+            },
+            {
+              "name": {
+                "value": "bagel"
+              }
+            },
+            {
+              "name": {
+                "value": "banana"
+              }
+            },
+            {
+              "name": {
+                "value": "bananas"
+              }
+            },
+            {
+              "name": {
+                "value": "basmati"
+              }
+            },
+            {
+              "name": {
+                "value": "basmati rice"
+              }
+            },
+            {
+              "name": {
+                "value": "batteries"
+              }
+            },
+            {
+              "name": {
+                "value": "beans"
+              }
+            },
+            {
+              "name": {
+                "value": "beef"
+              }
+            },
+            {
+              "name": {
+                "value": "beer"
+              }
+            },
+            {
+              "name": {
+                "value": "bell peppers"
+              }
+            },
+            {
+              "name": {
+                "value": "berries"
+              }
+            },
+            {
+              "name": {
+                "value": "biscuit"
+              }
+            },
+            {
+              "name": {
+                "value": "blueberr"
+              }
+            },
+            {
+              "name": {
+                "value": "blueberries"
+              }
+            },
+            {
+              "name": {
+                "value": "bread"
+              }
+            },
+            {
+              "name": {
+                "value": "broccoli"
+              }
+            },
+            {
+              "name": {
+                "value": "butter"
+              }
+            },
+            {
+              "name": {
+                "value": "cake"
+              }
+            },
+            {
+              "name": {
+                "value": "carrot"
+              }
+            },
+            {
+              "name": {
+                "value": "carrots"
+              }
+            },
+            {
+              "name": {
+                "value": "cereal"
+              }
+            },
+            {
+              "name": {
+                "value": "chana"
+              }
+            },
+            {
+              "name": {
+                "value": "cheese"
+              }
+            },
+            {
+              "name": {
+                "value": "chicken"
+              }
+            },
+            {
+              "name": {
+                "value": "chicken breast"
+              }
+            },
+            {
+              "name": {
+                "value": "chickpea"
+              }
+            },
+            {
+              "name": {
+                "value": "chickpeas"
+              }
+            },
+            {
+              "name": {
+                "value": "chili"
+              }
+            },
+            {
+              "name": {
+                "value": "chips"
+              }
+            },
+            {
+              "name": {
+                "value": "chocolate"
+              }
+            },
+            {
+              "name": {
+                "value": "cilantro"
+              }
+            },
+            {
+              "name": {
+                "value": "coconut water"
+              }
+            },
+            {
+              "name": {
+                "value": "coffee"
+              }
+            },
+            {
+              "name": {
+                "value": "coke"
+              }
+            },
+            {
+              "name": {
+                "value": "cookie"
+              }
+            },
+            {
+              "name": {
+                "value": "coriander"
+              }
+            },
+            {
+              "name": {
+                "value": "corn"
+              }
+            },
+            {
+              "name": {
+                "value": "cream"
+              }
+            },
+            {
+              "name": {
+                "value": "cucumber"
+              }
+            },
+            {
+              "name": {
+                "value": "cucumbers"
+              }
+            },
+            {
+              "name": {
+                "value": "curd"
+              }
+            },
+            {
+              "name": {
+                "value": "dal"
+              }
+            },
+            {
+              "name": {
+                "value": "dish soap"
+              }
+            },
+            {
+              "name": {
+                "value": "egg"
+              }
+            },
+            {
+              "name": {
+                "value": "eggs"
+              }
+            },
+            {
+              "name": {
+                "value": "fish"
+              }
+            },
+            {
+              "name": {
+                "value": "frozen peas"
+              }
+            },
+            {
+              "name": {
+                "value": "garlic"
+              }
+            },
+            {
+              "name": {
+                "value": "ghee"
+              }
+            },
+            {
+              "name": {
+                "value": "ginger"
+              }
+            },
+            {
+              "name": {
+                "value": "grape"
+              }
+            },
+            {
+              "name": {
+                "value": "grapes"
+              }
+            },
+            {
+              "name": {
+                "value": "greek yogurt"
+              }
+            },
+            {
+              "name": {
+                "value": "ground beef"
+              }
+            },
+            {
+              "name": {
+                "value": "honey"
+              }
+            },
+            {
+              "name": {
+                "value": "ice cream"
+              }
+            },
+            {
+              "name": {
+                "value": "juice"
+              }
+            },
+            {
+              "name": {
+                "value": "lamb"
+              }
+            },
+            {
+              "name": {
+                "value": "laundry detergent"
+              }
+            },
+            {
+              "name": {
+                "value": "lemon"
+              }
+            },
+            {
+              "name": {
+                "value": "lemons"
+              }
+            },
+            {
+              "name": {
+                "value": "lentil"
+              }
+            },
+            {
+              "name": {
+                "value": "lentils"
+              }
+            },
+            {
+              "name": {
+                "value": "lettuce"
+              }
+            },
+            {
+              "name": {
+                "value": "mango"
+              }
+            },
+            {
+              "name": {
+                "value": "mangoes"
+              }
+            },
+            {
+              "name": {
+                "value": "masala"
+              }
+            },
+            {
+              "name": {
+                "value": "milk"
+              }
+            },
+            {
+              "name": {
+                "value": "mushroom"
+              }
+            },
+            {
+              "name": {
+                "value": "mushrooms"
+              }
+            },
+            {
+              "name": {
+                "value": "mutton"
+              }
+            },
+            {
+              "name": {
+                "value": "napkins"
+              }
+            },
+            {
+              "name": {
+                "value": "noodle"
+              }
+            },
+            {
+              "name": {
+                "value": "nuts"
+              }
+            },
+            {
+              "name": {
+                "value": "oats"
+              }
+            },
+            {
+              "name": {
+                "value": "oil"
+              }
+            },
+            {
+              "name": {
+                "value": "olive oil"
+              }
+            },
+            {
+              "name": {
+                "value": "onion"
+              }
+            },
+            {
+              "name": {
+                "value": "onions"
+              }
+            },
+            {
+              "name": {
+                "value": "orange"
+              }
+            },
+            {
+              "name": {
+                "value": "orange juice"
+              }
+            },
+            {
+              "name": {
+                "value": "paneer"
+              }
+            },
+            {
+              "name": {
+                "value": "paper towels"
+              }
+            },
+            {
+              "name": {
+                "value": "pasta"
+              }
+            },
+            {
+              "name": {
+                "value": "peanut butter"
+              }
+            },
+            {
+              "name": {
+                "value": "peas"
+              }
+            },
+            {
+              "name": {
+                "value": "pepper"
+              }
+            },
+            {
+              "name": {
+                "value": "poha"
+              }
+            },
+            {
+              "name": {
+                "value": "potato"
+              }
+            },
+            {
+              "name": {
+                "value": "potatoes"
+              }
+            },
+            {
+              "name": {
+                "value": "protein"
+              }
+            },
+            {
+              "name": {
+                "value": "protein powder"
+              }
+            },
+            {
+              "name": {
+                "value": "quinoa"
+              }
+            },
+            {
+              "name": {
+                "value": "rajma"
+              }
+            },
+            {
+              "name": {
+                "value": "rice"
+              }
+            },
+            {
+              "name": {
+                "value": "roti"
+              }
+            },
+            {
+              "name": {
+                "value": "salmon"
+              }
+            },
+            {
+              "name": {
+                "value": "salt"
+              }
+            },
+            {
+              "name": {
+                "value": "sauce"
+              }
+            },
+            {
+              "name": {
+                "value": "shampoo"
+              }
+            },
+            {
+              "name": {
+                "value": "shrimp"
+              }
+            },
+            {
+              "name": {
+                "value": "soda"
+              }
+            },
+            {
+              "name": {
+                "value": "sparkling water"
+              }
+            },
+            {
+              "name": {
+                "value": "spinach"
+              }
+            },
+            {
+              "name": {
+                "value": "strawberr"
+              }
+            },
+            {
+              "name": {
+                "value": "strawberries"
+              }
+            },
+            {
+              "name": {
+                "value": "sugar"
+              }
+            },
+            {
+              "name": {
+                "value": "tea"
+              }
+            },
+            {
+              "name": {
+                "value": "tofu"
+              }
+            },
+            {
+              "name": {
+                "value": "toilet paper"
+              }
+            },
+            {
+              "name": {
+                "value": "tomato"
+              }
+            },
+            {
+              "name": {
+                "value": "tomatoes"
+              }
+            },
+            {
+              "name": {
+                "value": "toothpaste"
+              }
+            },
+            {
+              "name": {
+                "value": "tortilla"
+              }
+            },
+            {
+              "name": {
+                "value": "tortillas"
+              }
+            },
+            {
+              "name": {
+                "value": "trash bags"
+              }
+            },
+            {
+              "name": {
+                "value": "turkey"
+              }
+            },
+            {
+              "name": {
+                "value": "water"
+              }
+            },
+            {
+              "name": {
+                "value": "water bottles"
+              }
+            },
+            {
+              "name": {
+                "value": "wine"
+              }
+            },
+            {
+              "name": {
+                "value": "yogurt"
               }
             }
           ]
