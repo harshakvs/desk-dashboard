@@ -53,6 +53,7 @@ The full story is on [my blog](https://harshakvs.github.io/my-portfolio/blog/des
 **Always on screen**
 
 - 🕘 Clock, greeting and birthday reminders
+- 🎂 Birthdays synced from Apple Contacts (the source of Apple Calendar's Birthdays calendar)
 - ✳️ **Say hi to Claude**: starts my Claude usage window early (GitHub Action runs `claude -p`)
 - 🌤️ Today's weather, rain timing and the next 18 hours
 - 💧 Water and supplement tracker with reminders
@@ -86,13 +87,19 @@ Plus a photo screensaver after 5 idle minutes (a dim clock overnight), and light
 ## Talk to it
 
 ```text
-"Alexa, ask my desk to add 2 lb chicken"        → appears on the frame's grocery list
-"Alexa, tell my desk I drank water"             → water counter goes up
-"Alexa, tell my desk I took my magnesium"       → supplement ticked off
 "Alexa, ask my desk for my FPL score"           → points, rank, free transfers, deadline, captain
+"Alexa, tell my desk I drank water"             → water counter goes up on the frame
+"Alexa, tell my desk I took my magnesium"       → supplement ticked off
 "Alexa, ask my desk when do PSG play"
 "Alexa, ask my desk for the India score"
 ```
+
+🔊 [Watch Alexa answer the FPL question](docs/media/fpl-alexa-web.mp4) (sound on).
+
+**Groceries by voice are a known limitation.** Alexa's built-in shopping list intercepts anything that sounds like
+"add X", even inside the skill's own session, and Amazon closed third-party access to that list in July 2024. The
+skill still has a grocery intent (custom slot, slot elicitation, splitting "eggs and bread"), but in practice
+groceries go in on the frame. Home Assistant's Alexa integration, which can read Alexa's list, is the planned fix.
 
 ## How it works
 
