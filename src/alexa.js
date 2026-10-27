@@ -117,6 +117,25 @@ function speak(text, end = true, reprompt) {
   return new Response(JSON.stringify({ version: '1.0', response }), { headers: { 'content-type': 'application/json' } });
 }
 
+// Ask Alexa to treat the next utterance as a grocery item. While a slot is being elicited, Alexa routes
+// "eggs and bread" to this skill instead of its built-in shopping list.
+function elicitItem(text) {
+  return new Response(JSON.stringify({
+    version: '1.0',
+    response: {
+      outputSpeech: { type: 'PlainText', text },
+      reprompt: { outputSpeech: { type: 'PlainText', text: 'What do we need?' } },
+      shouldEndSession: false,
+      directives: [{
+        type: 'Dialog.ElicitSlot', slotToElicit: 'item',
+        updatedIntent: { name: 'AddGroceryIntent', confirmationStatus: 'NONE', slots: { item: { name: 'item', confirmationStatus: 'NONE' } } },
+      }],
+    },
+  }), { headers: { 'content-type': 'application/json' } });
+}
+
+const DONE = /^(no|nope|nothing|none|that'?s (it|all)|done|i'?m done|stop|no thanks?|nothing else)$/i;
+
 // `api` calls the dashboard's own handlers, so Alexa and the frame share one source of truth.
 export async function handleAlexa(request, env, api) {
   const body = await request.text();
@@ -127,7 +146,7 @@ export async function handleAlexa(request, env, api) {
   const req = JSON.parse(body).request;
   // What Alexa understood; visible with `wrangler tail` when debugging the voice model.
   console.log('alexa request:', req.type, req.intent?.name || '', JSON.stringify(Object.fromEntries(Object.entries(req.intent?.slots || {}).map(([k, v]) => [k, v.value]))), req.reason || '', req.error?.message || '');
-  if (req.type === 'LaunchRequest') return speak('Desk is ready. What should I add?', false, 'You can say an item like milk, or ask about FPL, PSG or cricket.');
+  if (req.type === 'LaunchRequest') { console.log('alexa reply: elicit item (launch)'); return elicitItem('Desk is ready. What do we need?'); }
   if (req.type === 'SessionEndedRequest') return new Response('{}', { headers: { 'content-type': 'application/json' } });
   if (req.type !== 'IntentRequest') return speak('Sorry, I did not get that.');
 
@@ -138,12 +157,14 @@ export async function handleAlexa(request, env, api) {
     switch (req.intent.name) {
       case 'AddGroceryIntent': {
         const item = slot('item');
-        if (!item) return speak('What should I add to groceries?', false);
+        if (!item) return elicitItem('What do we need?');
+        if (DONE.test(item)) return speak('Okay, it is on your desk.');
         const items = splitItems(item, FOODS.map((f) => f[0]));
         for (const it of items) await api.listAdd('groceries', it);
         const said = items.length > 1 ? `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}` : items[0];
         // Keep listening so a whole list can be said in one go ("add eggs" ... "we need bread" ... "no").
-        return speak(`Added ${said}. Anything else?`, false, 'Anything else for the grocery list?');
+        console.log('alexa reply: elicit item after adding', said);
+        return elicitItem(`Added ${said}. Anything else?`);
       }
       case 'AddTodoIntent': {
         const task = slot('task');

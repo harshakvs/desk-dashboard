@@ -24,7 +24,16 @@
           "slots": [
             {
               "name": "item",
-              "type": "GROCERY_ITEM"
+              "type": "GROCERY_ITEM",
+              "samples": [
+                "{item}",
+                "we need {item}",
+                "add {item}",
+                "get {item}",
+                "I need {item}",
+                "{item} please",
+                "also {item}"
+              ]
             }
           ],
           "samples": [
@@ -858,6 +867,38 @@
           ]
         }
       ]
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "AddGroceryIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "item",
+              "type": "GROCERY_ITEM",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.item"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.item",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What do we need?"
+          }
+        ]
+      }
+    ]
   }
 }
