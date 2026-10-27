@@ -1,8 +1,41 @@
+import { FOODS } from './foods.js';
+
 // Alexa custom skill ("my desk"). Alexa calls POST /alexa directly, so instead of the dashboard key
 // each request is checked the way Amazon requires for HTTPS endpoints: the signing certificate URL,
 // the RSA signature over the body, a fresh timestamp, and our own skill ID.
 
 const MAX_SKEW_MS = 150 * 1000;
+
+// ---------------------------------------------------------------- splitting "eggs and bread" / "eggs bread"
+
+// Multi-word items that must stay whole; single words come from the calorie table.
+const PHRASES = ['almond milk', 'coconut water', 'protein powder', 'peanut butter', 'greek yogurt', 'ice cream',
+  'basmati rice', 'olive oil', 'toilet paper', 'paper towels', 'orange juice', 'ground beef', 'chicken breast',
+  'sparkling water', 'frozen peas', 'dish soap', 'trash bags', 'bell peppers', 'sour cream', 'cream cheese',
+  'brown rice', 'green beans', 'sweet potatoes', 'hot sauce', 'soy sauce', 'oat milk', 'paper plates'];
+const singular = (w) => w.replace(/(ies)$/, 'y').replace(/(oes|ches|shes|xes)$/, (m) => m.slice(0, -2)).replace(/(?<!s)s$/, '');
+
+export function splitItems(text, knownWords) {
+  const known = new Set([...knownWords, ...PHRASES].map((p) => p.split(' ').map(singular).join(' ')));
+  const parts = text.split(/\s*(?:,|\band\b|&|\bplus\b)\s*/i).map((s) => s.trim()).filter(Boolean);
+  const out = [];
+  for (const part of parts) {
+    // Greedy longest match over known items; give up (keep the part whole) on any unknown word.
+    const words = part.split(/\s+/), segs = [];
+    let i = 0;
+    while (i < words.length) {
+      let len = 0;
+      for (let l = Math.min(3, words.length - i); l >= 1; l--) {
+        if (known.has(words.slice(i, i + l).map((w) => singular(w.toLowerCase())).join(' '))) { len = l; break; }
+      }
+      if (!len) break;
+      segs.push(words.slice(i, i + len).join(' '));
+      i += len;
+    }
+    out.push(...(i === words.length && segs.length > 1 ? segs : [part]));
+  }
+  return out;
+}
 
 // ---------------------------------------------------------------- request verification
 
@@ -106,9 +139,11 @@ export async function handleAlexa(request, env, api) {
       case 'AddGroceryIntent': {
         const item = slot('item');
         if (!item) return speak('What should I add to groceries?', false);
-        await api.listAdd('groceries', item);
-        // Keep listening so a whole list can be said in one go ("eggs" ... "bread" ... "no").
-        return speak(`Added ${item}. Anything else?`, false, 'Anything else for the grocery list?');
+        const items = splitItems(item, FOODS.map((f) => f[0]));
+        for (const it of items) await api.listAdd('groceries', it);
+        const said = items.length > 1 ? `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}` : items[0];
+        // Keep listening so a whole list can be said in one go ("add eggs" ... "we need bread" ... "no").
+        return speak(`Added ${said}. Anything else?`, false, 'Anything else for the grocery list?');
       }
       case 'AddTodoIntent': {
         const task = slot('task');
