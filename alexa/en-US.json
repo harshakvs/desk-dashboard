@@ -1,0 +1,160 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "my desk",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AddGroceryIntent",
+          "slots": [
+            {
+              "name": "item",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "add {item} to my list",
+            "add {item} to the list",
+            "add {item} to my shopping list",
+            "add {item} to groceries",
+            "add {item} to the grocery list",
+            "add {item} to my grocery list",
+            "put {item} on the grocery list",
+            "we need {item}",
+            "buy {item}",
+            "add {item}"
+          ]
+        },
+        {
+          "name": "AddTodoIntent",
+          "slots": [
+            {
+              "name": "task",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "add {task} to my to do list",
+            "add {task} to to do",
+            "remind me to {task}",
+            "put {task} on my to do list",
+            "to do {task}"
+          ]
+        },
+        {
+          "name": "ReadGroceriesIntent",
+          "samples": [
+            "what's on my grocery list",
+            "what do I need to buy",
+            "read my grocery list",
+            "what groceries do I need"
+          ]
+        },
+        {
+          "name": "WaterIntent",
+          "samples": [
+            "I drank water",
+            "I drank a glass of water",
+            "log water",
+            "log a glass of water",
+            "add a glass of water",
+            "I had water"
+          ]
+        },
+        {
+          "name": "SupplementIntent",
+          "slots": [
+            {
+              "name": "supplement",
+              "type": "SUPPLEMENT"
+            }
+          ],
+          "samples": [
+            "I took my {supplement}",
+            "I took {supplement}",
+            "log my {supplement}",
+            "mark {supplement} as taken"
+          ]
+        },
+        {
+          "name": "FplIntent",
+          "samples": [
+            "what's my FPL score",
+            "how is my fantasy team doing",
+            "fantasy premier league",
+            "when is the FPL deadline",
+            "FPL update"
+          ]
+        },
+        {
+          "name": "PsgIntent",
+          "samples": [
+            "when do PSG play",
+            "when is the next PSG match",
+            "PSG score",
+            "how did PSG do",
+            "PSG update"
+          ]
+        },
+        {
+          "name": "CricketIntent",
+          "samples": [
+            "what's the India score",
+            "India cricket score",
+            "cricket update",
+            "how is India doing"
+          ]
+        },
+        {
+          "name": "ClaudeHiIntent",
+          "samples": [
+            "say hi to Claude",
+            "start Claude",
+            "start my Claude timer",
+            "wake up Claude"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "SUPPLEMENT",
+          "values": [
+            {
+              "name": {
+                "value": "multivitamin",
+                "synonyms": [
+                  "vitamins",
+                  "multi",
+                  "vitamin"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "magnesium",
+                "synonyms": [
+                  "mag"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

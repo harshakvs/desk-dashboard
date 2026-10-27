@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "desk-dashboard",
+  "account_id": "2a22e6c75f70ca19523271e409d34b96",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-30",
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*", "/photos/*"] },
+  "kv_namespaces": [{ "binding": "LISTS", "id": "2a923aed69fc491ea25b0b986d32d08f" }],
+  "version_metadata": { "binding": "CF_VERSION" },
+  // Secrets (wrangler secret put): DASH_TOKEN, ALEXA_SKILL_ID, VOICEMONKEY_TOKEN, GH_TOKEN, GH_REPO.
+  "vars": { "FPL_ENTRY": "1011949" }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "desk-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --ip 0.0.0.0 --port 8787",
+    "deploy": "wrangler deploy",
+    "photos": "scripts/add-photos.sh",
+    "birthdays": "scripts/sync-birthdays.sh"
+  },
+  "devDependencies": {
+    "wrangler": "^4.145.0"
+  }
+}
