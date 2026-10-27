@@ -12,6 +12,12 @@ PSG · India cricket · Fantasy PL · groceries with calories · water & supplem
 ![Alexa](https://img.shields.io/badge/Alexa-skill-00CAFF?logo=amazonalexa&logoColor=white)
 ![No framework](https://img.shields.io/badge/frontend-plain%20JS-F7DF1E?logo=javascript&logoColor=black)
 
+<img src="docs/img/desk.jpg" alt="The frame running the dashboard on my desk" width="880">
+
+<sub>On my desk. <a href="docs/media/desk-tour.mp4">Watch the 48-second video</a> (dark and light mode).</sub>
+
+<br><br>
+
 <img src="docs/img/tour.gif" alt="Tour of the dashboard running on the frame: home screen, focus timer, chess, Premier League, groceries, article reader and smart home" width="880">
 
 <sub>Every frame above is a real screenshot pulled off the device over ADB.</sub>
@@ -72,6 +78,8 @@ The full story is on [my blog](https://harshakvs.github.io/my-portfolio/blog/des
 <td><img src="docs/img/smart-home.jpg" alt="Smart home"><p align="center"><b>Smart home</b><br><sub>Alexa routines via Voice Monkey</sub></p></td>
 </tr>
 </table>
+
+<p align="center"><img src="docs/img/in-action.gif" alt="Tapping through focus timer, chess, groceries and smart home on the real frame" width="560"></p>
 
 Plus a photo screensaver after 5 idle minutes (a dim clock overnight), and light/dark themes that follow sunrise and sunset.
 
