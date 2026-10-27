@@ -77,11 +77,10 @@ async function verify(request, body, env) {
 
 // ---------------------------------------------------------------- responses
 
-function speak(text, end = true) {
-  return new Response(JSON.stringify({
-    version: '1.0',
-    response: { outputSpeech: { type: 'PlainText', text }, shouldEndSession: end },
-  }), { headers: { 'content-type': 'application/json' } });
+function speak(text, end = true, reprompt) {
+  const response = { outputSpeech: { type: 'PlainText', text }, shouldEndSession: end };
+  if (reprompt) response.reprompt = { outputSpeech: { type: 'PlainText', text: reprompt } };
+  return new Response(JSON.stringify({ version: '1.0', response }), { headers: { 'content-type': 'application/json' } });
 }
 
 // `api` calls the dashboard's own handlers, so Alexa and the frame share one source of truth.
@@ -92,7 +91,7 @@ export async function handleAlexa(request, env, api) {
   if (problem) return new Response(JSON.stringify({ error: problem }), { status: 400 });
 
   const req = JSON.parse(body).request;
-  if (req.type === 'LaunchRequest') return speak('Desk is ready. You can add groceries, log water, or ask about FPL, PSG or cricket.', false);
+  if (req.type === 'LaunchRequest') return speak('Desk is ready. What should I add?', false, 'You can say an item like milk, or ask about FPL, PSG or cricket.');
   if (req.type === 'SessionEndedRequest') return new Response('{}', { headers: { 'content-type': 'application/json' } });
   if (req.type !== 'IntentRequest') return speak('Sorry, I did not get that.');
 
@@ -105,7 +104,8 @@ export async function handleAlexa(request, env, api) {
         const item = slot('item');
         if (!item) return speak('What should I add to groceries?', false);
         await api.listAdd('groceries', item);
-        return speak(`Added ${item} to groceries.`);
+        // Keep listening so a whole list can be said in one go ("eggs" ... "bread" ... "no").
+        return speak(`Added ${item}. Anything else?`, false, 'Anything else for the grocery list?');
       }
       case 'AddTodoIntent': {
         const task = slot('task');
@@ -152,10 +152,13 @@ export async function handleAlexa(request, env, api) {
         const ok = await api.claudeHi();
         return speak(ok ? 'Saying hi to Claude. Your usage window starts in about a minute.' : 'The Claude button is not set up yet.');
       }
+      case 'AMAZON.YesIntent':
+        return speak('Go ahead, what should I add?', false, 'What should I add?');
       case 'AMAZON.FallbackIntent':
         return speak('Sorry, I didn\'t catch that. Try: add eggs, I drank water, or what is my FPL score.', false);
       case 'AMAZON.HelpIntent':
         return speak('Try: add milk to groceries, I drank water, what is my FPL score, or when do PSG play.', false);
+      case 'AMAZON.NoIntent':
       case 'AMAZON.StopIntent':
       case 'AMAZON.CancelIntent':
         return speak('Okay.');
